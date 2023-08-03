@@ -1,6 +1,7 @@
-// src/FinancialAdvisorApp.js
+
 import React, { useState } from 'react';
 import axios from 'axios';
+import './FinancialAdvisorApp.css'
 
 const FinancialAdvisorApp = () => {
   const [userQuestion, setUserQuestion] = useState('');

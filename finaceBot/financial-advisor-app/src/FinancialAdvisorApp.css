@@ -1,0 +1,71 @@
+/* src/styles.css */
+.App {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  label {
+    font-size: 18px;
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+  
+  button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+  div.answer {
+    font-size: 18px;
+    margin-top: 20px;
+  }
+  
+  /* Media Queries for responsiveness */
+  @media (max-width: 480px) {
+    h1 {
+      font-size: 20px;
+    }
+  
+    label {
+      font-size: 16px;
+    }
+  
+    input[type="text"] {
+      font-size: 14px;
+    }
+  
+    button {
+      font-size: 14px;
+    }
+  
+    div.answer {
+      font-size: 16px;
+    }
+  }
+  
