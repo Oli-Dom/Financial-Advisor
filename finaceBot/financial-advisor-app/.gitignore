@@ -12,6 +12,9 @@
 /build
 
 # misc
+# Ignore .env file in the src directory
+
+**/.env
 .DS_Store
 .env.local
 .env.development.local
