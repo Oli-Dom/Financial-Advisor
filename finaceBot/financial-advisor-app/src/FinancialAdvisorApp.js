@@ -11,7 +11,7 @@ const FinancialAdvisorApp = () => {
   };
 
   const getAnswer = async () => {
-    const apiKey = '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'; // Replace with your OpenAI API key
+    const apiKey = ''; // Replace with your OpenAI API key
 
     // Check if the user has entered a question
     if (!userQuestion) {

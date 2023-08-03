@@ -1,7 +1,7 @@
 /* FinancialAdvisorApp.css */
 body {
     margin: 0; /* Remove default margin to use the entire viewport */
-    
+
     height: 100vh; /* Set the height of the body to the entire viewport height */
     background-color: #282c34;
     color: white;
