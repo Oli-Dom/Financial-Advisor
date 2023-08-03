@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import ReactPlayer from "react-player";
-
 import "@chatscope/chat-ui-kit-styles/dist/default/styles.min.css";
 import {
   MainContainer,
@@ -10,11 +8,10 @@ import {
   MessageInput,
   TypingIndicator,
 } from "@chatscope/chat-ui-kit-react";
-import MessageRecipient from "./MessageRecipient";
 
 const questions = [
   "How can I build my credit score?",
-  "How can I start a business?",
+  "How can I start a businesss?",
   "How can I plan for college?",
 ];
 const answers = [
@@ -24,12 +21,13 @@ const answers = [
 ];
 
 const videoAnswers = [
-  "https://youtu.be/kjYlsz2kmII",
-  "https://youtu.be/RxQHjlv38wQ",
-  "https://youtu.be/lZa8r3hUc8w",
+  "./VideoAnswers/credit_score.mp4",
+  "./VideoAnswers/Business.mp4",
+  "./VideoAnswers/College_2.mp4",
 ];
 
 const FinancialAdvisorApp = () => {
+  // Define states for managing chat messages and "Kira is typing" indicator
   const [messages, setMessages] = useState([
     {
       message: "Hello, I'm Kira, your financial advisor",
@@ -38,51 +36,55 @@ const FinancialAdvisorApp = () => {
     },
   ]);
   const [isTyping, setIsTyping] = useState(false);
-  const [videoUrl, setVideoUrl] = useState("");
 
   const apiKey = process.env.REACT_APP_API_KEY;
 
-  const handleSend = async (message) => {
-    const newMessage = {
-      message,
-      direction: "outgoing",
-      sender: "user",
-    };
-
-    const newMessages = [...messages, newMessage];
-    setMessages(newMessages);
-
-    const questionIndex = questions.findIndex(
-      (q) => q.toLowerCase() === message.toLowerCase()
-    );
-
-    if (questionIndex !== -1) {
-      setIsTyping(true);
-
-      setTimeout(() => {
-        const answerMessage = {
-          message: answers[questionIndex],
-          sender: "Kira",
-        };
-        const videoMessage = {
-          message: videoAnswers[questionIndex],
-          sender: "Kira",
-          isVideo: true,
-        };
-
-        setMessages([...newMessages, answerMessage, videoMessage]);
-        setIsTyping(false);
-
-        // Set the React Player URL based on the user's input
-        setVideoUrl(videoAnswers[questionIndex]);
-      }, 3000);
-    } else {
-      setIsTyping(true);
-      await processMessageToChatGPT(newMessages);
-      setIsTyping(false);
-    }
+  // Function to handle user message sending
+const handleSend = async (message) => {
+  // Create a new message object with user's message
+  const newMessage = {
+    message,
+    direction: "outgoing",
+    sender: "user",
   };
 
+  // Add the new message to the messages state
+  const newMessages = [...messages, newMessage];
+  setMessages(newMessages);
+
+  // Check if the user's message matches any of the questions
+  const questionIndex = questions.findIndex(
+    (q) => q.toLowerCase() === message.toLowerCase()
+  );
+
+  if (questionIndex !== -1) {
+    // If the question is found, set the "Kira is typing" indicator and add the response after 3 seconds
+    setIsTyping(true);
+
+    // Use setTimeout to simulate a 3-second delay
+    setTimeout(() => {
+      const answerMessage = {
+        message: answers[questionIndex],
+        sender: "Kira",
+      };
+      const videoMessage = {
+        message: videoAnswers[questionIndex],
+        sender: "Kira",
+      };
+
+      setMessages([...newMessages, answerMessage, videoMessage]);
+      setIsTyping(false); // Remove the "Kira is typing" indicator after the response is added
+    }, 3000);
+  } else {
+    // If the question is not found, process the user's message using the API as before
+    setIsTyping(true);
+    await processMessageToChatGPT(newMessages);
+    setIsTyping(false);
+  }
+};
+
+
+  // Function to process the user's message and get a response from the OpenAI API
   async function processMessageToChatGPT(chatMessages) {
     // ... (existing code)
   }
@@ -108,22 +110,7 @@ const FinancialAdvisorApp = () => {
             style={{ maxHeight: "calc(100% - 40px)", overflowY: "auto" }}
           >
             {messages.map((message, i) => {
-              if (message.sender === "Kira" && message.isVideo) {
-                return (
-                  <div key={i}>
-                    <MessageRecipient>{message.sender}</MessageRecipient>
-
-                    <ReactPlayer
-                      url={videoUrl} // Set the URL for the React Player
-                      controls={true}
-                      width="400px"
-                      height="400px"
-                    />
-                  </div>
-                );
-              } else {
-                return <Message key={i} model={message} />;
-              }
+              return <Message key={i} model={message} />;
             })}
           </MessageList>
           <MessageInput placeholder="Type message here" onSend={handleSend} />
