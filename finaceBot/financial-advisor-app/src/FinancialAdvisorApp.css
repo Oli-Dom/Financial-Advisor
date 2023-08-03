@@ -1,10 +1,21 @@
-/* src/styles.css */
-.App {
+/* FinancialAdvisorApp.css */
+body {
+    margin: 0; /* Remove default margin to use the entire viewport */
+    
+    height: 100vh; /* Set the height of the body to the entire viewport height */
+    background-color: #282c34;
+    color: white;
+  }
+  
+  #chatForm {
     font-family: Arial, sans-serif;
     text-align: center;
+    width: 100%; /* Set the width to 100% to take the entire screen width */
     max-width: 600px;
-    margin: 0 auto;
     padding: 20px;
+    background-color: #282c34;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
   }
   
   h1 {
@@ -33,7 +44,7 @@
     border: none;
     padding: 10px 20px;
     font-size: 16px;
-    border-radius: 5px;
+    border-radius: 20px;
     cursor: pointer;
   }
   
@@ -41,9 +52,14 @@
     background-color: #0056b3;
   }
   
-  div.answer {
+  .answer {
     font-size: 18px;
     margin-top: 20px;
+    background-color: #fff;
+    color: black;
+    padding: 10px;
+    border: 3px solid #282c34;
+    border-radius: 5px;
   }
   
   /* Media Queries for responsiveness */
@@ -62,10 +78,6 @@
   
     button {
       font-size: 14px;
-    }
-  
-    div.answer {
-      font-size: 16px;
     }
   }
   

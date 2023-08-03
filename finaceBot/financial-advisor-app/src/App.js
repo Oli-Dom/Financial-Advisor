@@ -1,11 +1,20 @@
+import React from "react";
+import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 
-import React from 'react';
-import FinancialAdvisorApp from './FinancialAdvisorApp';
+import Header from "./Header";
+import FinancialAdvisorApp from "./FinancialAdvisorApp";
 
 function App() {
   return (
     <div className="App">
-      <FinancialAdvisorApp />
+       <Router>
+        <Header/>
+        <Routes>
+          {/* <Route path="/" element={<Home/>}/> */}
+          <Route path="/advisor" element={<FinancialAdvisorApp/>}/>
+          {/* <Route path="/achivement" element={<Achivements/>}/> */}
+        </Routes>
+      </Router>
     </div>
   );
 }

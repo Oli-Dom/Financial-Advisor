@@ -1,7 +1,6 @@
-
 import React, { useState } from 'react';
-import axios from 'axios';
-import './FinancialAdvisorApp.css'
+import { Configuration, OpenAIApi } from 'openai';
+import './FinancialAdvisorApp.css';
 
 const FinancialAdvisorApp = () => {
   const [userQuestion, setUserQuestion] = useState('');
@@ -12,7 +11,7 @@ const FinancialAdvisorApp = () => {
   };
 
   const getAnswer = async () => {
-    const apiKey = 'YOUR_API_KEY'; // Replace 
+    const apiKey = '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'; // Replace with your OpenAI API key
 
     // Check if the user has entered a question
     if (!userQuestion) {
@@ -21,21 +20,23 @@ const FinancialAdvisorApp = () => {
     }
 
     try {
-      const response = await axios.post('https://api.openai.com/v1/engines/davinci-codex/completions', {
-        prompt: userQuestion,
-        max_tokens: 150, // Set the maximum length of the response
-        temperature: 0.7, // Adjust temperature as needed
-        stop: '\n' // Stop the response at the first line break
-      }, {
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${apiKey}`
-        }
+      const configuration = new Configuration({
+        apiKey: apiKey,
+      });
+      const openai = new OpenAIApi(configuration);
+      const completion = await openai.createChatCompletion({
+        model: 'gpt-3.5-turbo',
+        messages: [
+          { role: 'system', content: 'You are a helpful financial assistant.', },
+          { role: 'user', content: userQuestion },
+          
+        ],
+        max_tokens: 300, // Set the maximum total tokens allowed for the entire conversation
+
       });
 
-      const data = response.data;
-      const answer = data.choices[0].text.trim();
-      setAnswer(`Answer: ${answer}`);
+      const answer = completion.data.choices[0].message['content'];
+      setAnswer(`Kira: ${answer}`);
     } catch (error) {
       console.error('Error fetching the answer:', error);
       setAnswer('Error fetching the answer. Please try again later.');
@@ -43,12 +44,13 @@ const FinancialAdvisorApp = () => {
   };
 
   return (
-    <div>
-      <h1>Financial Advisor App</h1>
-      <label htmlFor="userQuestion">Enter your financial question:</label>
+    <div id='chatForm'>
+     
+      <label htmlFor="userQuestion">Ask Kira your question:</label>
+     
+      <div className='answer'>{answer}</div>
       <input type="text" id="userQuestion" value={userQuestion} onChange={handleUserQuestionChange} />
       <button onClick={getAnswer}>Get Answer</button>
-      <div>{answer}</div>
     </div>
   );
 };
