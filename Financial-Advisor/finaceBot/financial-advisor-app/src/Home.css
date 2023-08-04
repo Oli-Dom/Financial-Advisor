@@ -106,7 +106,7 @@
    
   }
 #picChange{
-  width: 400px;
+  width: 500px;
   height: 400px;
 }
  img{
@@ -114,6 +114,9 @@
   height: 500px;
  }
  
+ th {
+  font-weight: lighter;
+ }
   
  
   
