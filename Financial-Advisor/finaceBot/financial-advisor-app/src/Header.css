@@ -1,3 +1,8 @@
+.logo_icon {
+	width: 100px;
+	height: 100px;
+}
+
 .header {
   display: flex;
   align-items: center;
@@ -14,13 +19,14 @@
   justify-content: space-between;
   font-family: 'Roboto', sans-serif;
   background-color: #183059;
+  font-size: 15px;
 }
 
 .logo {
-  font-size: 3rem;
+  font-size: 15px;
   color: #fff;
   background: linear-gradient(45deg, #F03A47, #F03A47);
-  padding: 1rem 2.5rem;
+  padding: 5pt 5pt;
   border-radius: 15px;
   display: inline-block;
   font-family: 'Arial', sans-serif;
@@ -42,6 +48,6 @@ a {
   margin: 0 20px;
   text-decoration: none;
   color: white;
-  font-weight: 600;
+  font-weight: 500;
   background-color: #183059;
 }
