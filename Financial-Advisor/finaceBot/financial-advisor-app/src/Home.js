@@ -9,40 +9,56 @@ function HomePage() {
         <h1>Say hello to Kira!</h1>
         <p>Your personal AI financial assistant.</p>
       </section>
-      <section className="features">
-        {/* Feature cards */}
-        <div className="feature">
-          <div className="feature-icon"></div>
-          <h3>What is Kira?</h3>
-          <p>
-            Kira is an innovative and inclusive financial AI assistant,<br></br>
-            specifically designed to cater to the needs of minorities. With a
-            <br></br>
-            strong focus on personalization and cultural sensitivity, Kira
-            <br></br>
-            serves as a powerful tool providing essential financial guidance and
-            <br></br>
-            support to individuals from diverse backgrounds. As a virtual
-            <br></br>
-            assistant, Kira leverages advanced artificial intelligence<br></br>
-            algorithms and data analytics to gain a deep understanding of the
-            <br></br>
-            unique financial challenges faced by minorities. This allows Kira to
-            <br></br>
-            offer tailored and relevant solutions to enhance their overall
-            <br></br>
-            financial well-being.
-          </p>
-        </div>
 
+      <section className="features">
+        <table>
+          {/* Feature cards */}
+          <tr>
+            <div className="feature">
+              <div className="feature-icon"></div>
+              <h3>What is Kira?</h3>
+              <p>
+                Kira is an innovative and inclusive financial AI assistant,
+                <br></br>
+                specifically designed to cater to the needs of minorities. With
+                a<br></br>
+                strong focus on personalization and cultural sensitivity, Kira
+                <br></br>
+                serves as a powerful tool providing essential financial guidance
+                and
+                <br></br>
+                support to individuals from diverse backgrounds. As a virtual
+                <br></br>
+                assistant, Kira leverages advanced artificial intelligence
+                <br></br>
+                algorithms and data analytics to gain a deep understanding of
+                the
+                <br></br>
+                unique financial challenges faced by minorities. This allows
+                Kira to
+                <br></br>
+                offer tailored and relevant solutions to enhance their overall
+                <br></br>
+                financial well-being.
+              </p>
+            </div>
+          </tr>
+          <tr>
+            <th>
+              <div>
+                <img
+                  id="picChange"
+                  src="https://www.apaservices.org/images/title-chatbot-patient-support_tcm9-295956.jpg"
+                ></img>
+              </div>
+            </th>
+          </tr>
+        </table>
+
+      <br></br>
         <div>
-          <img className="illustraction" src="https://www.apaservices.org/images/title-chatbot-patient-support_tcm9-295956.jpg"></img>
-          </div>
-     
-      
-          <div>
-          <img className="illustraction"src="https://img.freepik.com/premium-vector/finance-concept-with-character-situation-man-brainstorming-generates-new-ideas-development-financial-wealth-making-money-vector-illustration-with-people-scene-flat-design-web_9209-11304.jpg?w=2000"></img>
-          </div>
+          <img src="https://img.freepik.com/premium-vector/finance-concept-with-character-situation-man-brainstorming-generates-new-ideas-development-financial-wealth-making-money-vector-illustration-with-people-scene-flat-design-web_9209-11304.jpg?w=2000"></img>
+        </div>
 
         <div className="feature">
           <div className="feature-icon"></div>
@@ -65,7 +81,6 @@ function HomePage() {
           </p>
         </div>
 
-        
         {/* Repeat for other features */}
       </section>
       <section className="about">

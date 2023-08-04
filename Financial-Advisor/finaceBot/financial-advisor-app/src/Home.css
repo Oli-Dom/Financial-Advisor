@@ -76,6 +76,7 @@
     padding: 1.5rem;
     background-color: white;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+    height: fit-content;
   }
   
   .feature-icon {
@@ -104,10 +105,13 @@
     padding-bottom: 73px;
    
   }
-
- #pic{
+#picChange{
+  width: 400px;
+  height: 400px;
+}
+ img{
   width: 500px;
-  height: 550px;
+  height: 500px;
  }
  
   
