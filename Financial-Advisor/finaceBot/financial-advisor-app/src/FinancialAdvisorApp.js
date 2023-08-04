@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import ReactPlayer from "react-player";
+import './FinancialAdvisorApp.css'
 
 import "@chatscope/chat-ui-kit-styles/dist/default/styles.min.css";
 import {
@@ -29,6 +30,12 @@ const videoAnswers = [
   "https://youtu.be/lZa8r3hUc8w",
 ];
 
+const achivements = [
+  "Entrepreneur : Ask about business",
+  "Rookie : Ask your first question",
+  "Veteran : Ask 100 questions",
+];
+
 const FinancialAdvisorApp = () => {
   const [messages, setMessages] = useState([
     {
@@ -39,6 +46,9 @@ const FinancialAdvisorApp = () => {
   ]);
   const [isTyping, setIsTyping] = useState(false);
   const [videoUrl, setVideoUrl] = useState("");
+  const [showAchievements, setShowAchievements] = useState(false);
+  const [achievements, setAchievements] = useState([]);
+  const [questionsAsked, setQuestionsAsked] = useState(1);
 
   const apiKey = process.env.REACT_APP_API_KEY;
 
@@ -81,11 +91,25 @@ const FinancialAdvisorApp = () => {
       await processMessageToChatGPT(newMessages);
       setIsTyping(false);
     }
+
+    setQuestionsAsked(questionsAsked + 1);
+    console.log(questionsAsked);
+     if (questionsAsked === 1 && !achievements.includes("Rookie : Ask your first question")) {
+      alert("Rookie achivement unlocked!");
+      // If the user asks their first question, add the "Rookie" achievement to the unlocked achievements
+      setAchievements([...achievements, "Rookie : Ask your first question"]);
+      achivements.splice(1, 1);
+    }
+    
   };
 
   async function processMessageToChatGPT(chatMessages) {
     // ... (existing code)
   }
+
+  const handleAchievementsButtonClick = () => {
+    setShowAchievements(!showAchievements);
+  };
 
   return (
     <div
@@ -129,6 +153,34 @@ const FinancialAdvisorApp = () => {
           <MessageInput placeholder="Type message here" onSend={handleSend} />
         </ChatContainer>
       </MainContainer>
+
+      <div className="achievements-container">
+        {/* Button to toggle visibility of achievements */}
+        <button id="achivementButton" onClick={handleAchievementsButtonClick}>
+          {showAchievements ? "Hide Achievements" : "Show Achievements"}
+        </button>
+        {showAchievements && (
+          <div className="achievements-list">
+            <h2>Unlocked Achievements:</h2>
+            <ul>
+              {achievements.map((achievement, index) => (
+                <li key={index}>{achievement}</li>
+              ))}
+            </ul>
+            <h2>Locked Achievements:</h2>
+            <ul>
+              {/* Logic to display locked achievements (if any) */}
+              {achivements.map((achivement, index) => {
+                const achievement = `Achievement: ${achivement}`;
+                if (!achievements.includes(achievement)) {
+                  return <li  key={index}>{achievement} (Locked)</li>;
+                }
+                return null;
+              })}
+            </ul>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
